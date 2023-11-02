@@ -5,8 +5,11 @@ import { connectToDB } from "@utils/database";
 
 
 
+
 import User from '@models/user';
 import { makeTransaction } from '@utils/makePayments';
+import NavBar from '@components/NavBar';
+import Main from '@components/Main'
 
 export default function Home() {
   let url = 'https://rpc.sepolia.org';
@@ -40,15 +43,14 @@ export default function Home() {
 
   return (
     <>
-      <h1 className='text-4xl'>
-        Home
-      </h1>
+      <NavBar />
+      <Main />
       {/* creating eth accounts */}
-      {createAcc()} 
+      {/* {createAcc()}  */}
       {/* saving things to db */}
-      {database('utkarshkushi2002@gmail.com', pb, pk)}
+      {/* {database('utkarshkushi2002@gmail.com', pb, pk)} */}
       {/* making transaction */}
-      {makeTransaction()}
+      {/* {makeTransaction()} */}
     </>
   )
 }
