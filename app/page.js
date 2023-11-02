@@ -8,17 +8,31 @@ import User from '@models/user';
 export default function Home() {
   let url = 'https://rpc.sepolia.org';
   let web3 = new Web3(url);
+  let pb ;
+  let pk ;
   function createAcc(){
       let newAcc = web3.eth.accounts.create()
       console.log(newAcc)
+      pb = newAcc['address'];
+      pk = newAcc['privateKey'];
+
   }
 
-  const database = async (userEmail) => {
+  const database = async (userEmail , pb, pk) => {
     await connectToDB();
 
     const userExist = await User.findOne({
       email: userEmail
     })
+
+    if(!userExist){
+      await User.create({
+        email: userEmail,
+        username: 'kushi',
+        publicAddress: pb,
+        privateKey: pk
+      })
+    }
   }
 
   return (
@@ -27,7 +41,7 @@ export default function Home() {
         Home
       </h1>
       {createAcc()}
-      {database()}
+      {database('utkarshkushi2002@gmail.com', pb, pk)}
     </>
   )
 }
