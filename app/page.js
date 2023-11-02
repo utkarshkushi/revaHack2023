@@ -3,7 +3,10 @@ import Web3 from 'web3'
 
 import { connectToDB } from "@utils/database";
 
+
+
 import User from '@models/user';
+import { makeTransaction } from '@utils/makePayments';
 
 export default function Home() {
   let url = 'https://rpc.sepolia.org';
@@ -40,8 +43,12 @@ export default function Home() {
       <h1 className='text-4xl'>
         Home
       </h1>
-      {createAcc()}
+      {/* creating eth accounts */}
+      {createAcc()} 
+      {/* saving things to db */}
       {database('utkarshkushi2002@gmail.com', pb, pk)}
+      {/* making transaction */}
+      {makeTransaction()}
     </>
   )
 }
