@@ -1,7 +1,36 @@
+"use client";
+
 import React from 'react'
 import css from '../wallet/wallet.css'
+import {useState} from 'react'
 
-const Page = () => {
+
+
+  const Page = () => {
+    const [balanceInput, setBalanceInput] = useState('0.0043 ETH');
+    const [mainnet, setMainnet] = useState('');
+    const [Reciepent, setReciepent] = useState('');
+    const [predictionResult, setPredictionResult] = useState(null);
+
+    const handlePredictClick = () => {
+      // Add any code you want to execute when the "Predict" button is clicked here.
+  
+      // Clear the input fields by resetting their values to their initial values.
+      setMainnet('');
+      setReciepent('');
+      
+      // Perform the prediction and update predictionResult.
+      // For example, you can set predictionResult based on the input values.
+      const prediction = performPrediction(input15, input14);
+      setPredictionResult(prediction);
+    };
+  
+    const performPrediction = (input1, input2) => {
+      // Replace this with your actual prediction logic.
+      // For now, just returning a placeholder result.
+      return `Prediction Result: ${input1} - ${input2}`;
+    };
+    
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div className="Rectangle14" style={{
@@ -34,7 +63,7 @@ const Page = () => {
             textAlign: 'center'
           }} placeholder="Time slot" />
 
-          <div className="Rectangle11" style={{
+          <button className="Rectangle11" style={{
             width: 163, height: 37, background: '#ED8BFE',
             boxShadow: '0px 2px 2px rgba(237, 139, 254, 0.40)', borderRadius: 10, border: '1px black solid'
           }}>
@@ -42,7 +71,7 @@ const Page = () => {
               marginLeft: 55, marginRight: 56, marginBottom: 8, marginTop: 9,
               color: 'black', fontSize: 15, fontFamily: 'Manrope', fontWeight: '600', wordWrap: 'break-word'
             }}>Predict</div>
-          </div>
+          </button>
         </div>
       </div>
     </div>
