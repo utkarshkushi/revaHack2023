@@ -27,7 +27,7 @@ const handler = NextAuth({
         try {
             await connectToDB();
 
-            // check if user exists 
+            // // check if user exists 
             // const userExists = await User.findOne({
             //     email: profile.email
             // })
@@ -56,6 +56,8 @@ const handler = NextAuth({
                     publicAddress: arr['address'],
                     privateKey: arr['privateKey']
                 })
+
+
 
             return true
         } catch (error) {
