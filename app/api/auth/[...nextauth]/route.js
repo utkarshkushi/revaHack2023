@@ -14,56 +14,47 @@ const handler = NextAuth({
             clientSecret: process.env.CLIENT_SECRET,
         })
     ],
-    async session({ session }) {
-        const sessionUser = await User.findOne({
-            email: session.user.email
-        })
-
-        session.user.id = sessionUser._id.toString();
-
-        return session
-    },
-    async signIn({ profile }) {
-        try {
-            await connectToDB();
-
-            // // check if user exists 
-            // const userExists = await User.findOne({
-            //     email: profile.email
-            // })
-
-            // if (!userExists) {
-            //     let arr =  createAccount()
-
-            //     // console.log("arr is ........." + arr)
-
-            //     await User.create({
-            //         email: profile.email,
-            //         username: profile.name.replace(" ", "").toLowerCase(),
-            //         publicAddress: arr['address'],
-            //         privateKey: arr['privateKey']
-            //     })
-            // }
-
-
-            let arr =  createAccount()
-
-                // console.log("arr is ........." + arr)
-
-                await User.create({
-                    email: profile.email,
-                    username: profile.name.replace(" ", "").toLowerCase(),
-                    publicAddress: arr['address'],
-                    privateKey: arr['privateKey']
+    callbacks: {
+        async session({ session }) {
+            const sessionUser = await User.findOne({
+                email: session.user.email
+            })
+    
+            session.user.id = sessionUser._id.toString();
+    
+            return session
+        },
+        async signIn({ profile }) {
+            try {
+                await connectToDB();
+    
+                // check if user exists 
+                const userExists = await User.findOne({
+                    email: profile.email
                 })
-
-
-
-            return true
-        } catch (error) {
-            return false
+    
+                if (!userExists) {
+                    let arr = await createAccount()
+    
+                    await User.create({
+                        email: profile.email,
+                        username: profile.name.replace(" ", "").toLowerCase(),
+                        publicAddress: arr[0],
+                        privateKey: arr[1]
+                    })
+                }
+    
+    
+                
+    
+    
+    
+                return true
+            } catch (error) {
+                return false
+            }
+    
         }
-
     }
 })
 
