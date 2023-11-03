@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
+
 const NavBar = () => {
     const { data: session } = useSession();
     const isUserLoggedIn = false

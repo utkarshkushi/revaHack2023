@@ -28,23 +28,34 @@ const handler = NextAuth({
             await connectToDB();
 
             // check if user exists 
-            const userExists = await User.findOne({
-                email: profile.email
-            })
+            // const userExists = await User.findOne({
+            //     email: profile.email
+            // })
 
-            if (!userExists) {
-                let arr =  createAccount()
+            // if (!userExists) {
+            //     let arr =  createAccount()
+
+            //     // console.log("arr is ........." + arr)
+
+            //     await User.create({
+            //         email: profile.email,
+            //         username: profile.name.replace(" ", "").toLowerCase(),
+            //         publicAddress: arr['address'],
+            //         privateKey: arr['privateKey']
+            //     })
+            // }
+
+
+            let arr =  createAccount()
 
                 // console.log("arr is ........." + arr)
 
                 await User.create({
                     email: profile.email,
                     username: profile.name.replace(" ", "").toLowerCase(),
-                    image: profile.picture,
                     publicAddress: arr['address'],
                     privateKey: arr['privateKey']
                 })
-            }
 
             return true
         } catch (error) {

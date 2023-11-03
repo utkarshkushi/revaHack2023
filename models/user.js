@@ -10,9 +10,6 @@ const UserSchema = new Schema({
       type: String,
       required: [true, 'Username is required!']
     },
-    image: {
-      type: String,
-    },
     publicAddress: {
         type: String,
         required: [true, 'public Address is required!']
