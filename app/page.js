@@ -45,6 +45,8 @@ export default function Home() {
     <>
       <NavBar />
       <Main />
+
+
       {/* creating eth accounts */}
       {/* {createAcc()}  */}
       {/* saving things to db */}
