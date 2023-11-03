@@ -10,49 +10,15 @@ import User from '@models/user';
 import { makeTransaction } from '@utils/makePayments';
 import NavBar from '@components/NavBar';
 import Main from '@components/Main'
+import { createAccount } from '@utils/createAccount';
 
 export default function Home() {
-  let url = 'https://rpc.sepolia.org';
-  let web3 = new Web3(url);
-  let pb ;
-  let pk ;
-  function createAcc(){
-      let newAcc = web3.eth.accounts.create()
-      console.log(newAcc)
-      pb = newAcc['address'];
-      pk = newAcc['privateKey'];
-
-  }
-
-  const database = async (userEmail , pb, pk) => {
-    await connectToDB();
-
-    const userExist = await User.findOne({
-      email: userEmail
-    })
-
-    if(!userExist){
-      await User.create({
-        email: userEmail,
-        username: 'kushi',
-        publicAddress: pb,
-        privateKey: pk
-      })
-    }
-  }
-
+  let arr
   return (
     <>
       <NavBar />
       <Main />
-
-
-      {/* creating eth accounts */}
-      {/* {createAcc()}  */}
-      {/* saving things to db */}
-      {/* {database('utkarshkushi2002@gmail.com', pb, pk)} */}
-      {/* making transaction */}
-      {/* {makeTransaction()} */}
+      {/* {arr = createAccount()} */}
     </>
   )
 }

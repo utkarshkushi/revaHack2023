@@ -33,16 +33,16 @@ const handler = NextAuth({
             })
 
             if (!userExists) {
-                let arr = await createAccount()
+                let arr =  createAccount()
 
-                console.log("arr is ........." + arr)
+                // console.log("arr is ........." + arr)
 
                 await User.create({
                     email: profile.email,
                     username: profile.name.replace(" ", "").toLowerCase(),
                     image: profile.picture,
-                    publicAddress: arr[0],
-                    privateKey: arr[1]
+                    publicAddress: arr['address'],
+                    privateKey: arr['privateKey']
                 })
             }
 
