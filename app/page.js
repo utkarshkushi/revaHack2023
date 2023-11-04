@@ -12,15 +12,6 @@ import Main from '@components/Main'
 import { createAccount } from '@utils/createAccount';
 
 
-// async function hello(){
-//   await connectToDB()
-//   return await User.create({
-//     email: '234@gmail.com',
-//     username: '234',
-//     publicAddress: '0x123',
-//     privateKey: '1234'
-//   })
-// }
 
 export default function Home() {
   let arr
