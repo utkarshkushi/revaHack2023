@@ -20,7 +20,7 @@ export default function Home() {
       <NavBar />
       <Main />
       <div>
-        hello
+        hell
       </div>
       {/* {hello()} */}
       {/* {arr = createAccount()} */}
